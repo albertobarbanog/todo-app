@@ -1,16 +1,16 @@
 import time
-
 import functions
-import PySimpleGUI as sg
+import PySimpleGUI as sg # pip install PySimpleGUI
 
 sg.theme("Topanga")
 
 clock = sg.Text('', key='clock')
 label = sg.Text("Type in to-do")
 input_box = sg.InputText(tooltip="Enter todo", key="todo")
-add_button = sg.Button("Add")
+add_button = sg.Button(size=2, image_source="004 add.png", mouseover_colors="LightBlue2",
+                       tooltip="Add Todo", key="Add")
 list_box = sg.Listbox(values=functions.get_todos(), key='todos',
-                      enable_events=True, size=[45, 10])
+                      enable_events=True, size=(45, 10))
 edit_button = sg.Button("Edit")
 complete_button = sg.Button("Complete")
 exit_button = sg.Button("Exit")
@@ -49,7 +49,7 @@ while True:
 
         case "Complete":
             try:
-                todo_to_complete =  values['todos'][0]
+                todo_to_complete = values['todos'][0]
                 todos = functions.get_todos()
                 todos.remove(todo_to_complete)
                 functions.write_todos(todos)
